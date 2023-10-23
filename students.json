@@ -1,0 +1,47 @@
+[
+  {
+      "name": "John Doe",
+      "age": 20,
+      "major": "Leather Crafting",
+      "courses": [
+          {
+              "courseName": "Leatherwork 101",
+              "grade": "A"
+          },
+          {
+              "courseName": "Advanced Leather Design",
+              "grade": "B"
+          }
+      ]
+  },
+  {
+      "name": "Jane Smith",
+      "age": 22,
+      "major": "Leather Design",
+      "courses": [
+          {
+              "courseName": "Introduction to Leather Design",
+              "grade": "A+"
+          },
+          {
+              "courseName": "Leather Production Techniques",
+              "grade": "A-"
+          }
+      ]
+  },
+  {
+      "name": "Robert Johnson",
+      "age": 21,
+      "major": "Leather Technology",
+      "courses": [
+          {
+              "courseName": "Leather Technology Fundamentals",
+              "grade": "B+"
+          },
+          {
+              "courseName": "Advanced Leather Engineering",
+              "grade": "B-"
+          }
+      ]
+  }
+]
