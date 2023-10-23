@@ -32,7 +32,27 @@ function populateStudentList() {
         })
         .catch(error => console.error('Error loading student data:', error));
 }
+// Function to add a new course to a student's course list
+function addCourse(studentIndex) {
+  const newCourseName = document.getElementById("new-course-name").value;
 
+  if (newCourseName) {
+      students[studentIndex].courses.push({
+          courseName: newCourseName,
+          grade: "N/A" // Initialize with "N/A" grade
+      });
+      saveStudentData();
+      populateStudentList();
+      document.getElementById("new-course-name").value = ''; // Clear the input field
+  }
+}
+
+// Function to remove a course from a student's course list
+function removeCourse(studentIndex, courseIndex) {
+  students[studentIndex].courses.splice(courseIndex, 1);
+  saveStudentData();
+  populateStudentList();
+}
 // Function to update a student's grade
 function updateGrade(studentIndex, courseIndex) {
     const newGrade = prompt("Enter the new grade:");

@@ -92,3 +92,34 @@ h1 {
   padding: 10px;
   cursor: pointer;
 }
+#edit-course-list {
+  padding: 0;
+  margin: 0;
+}
+
+#edit-course-list li {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+#edit-course-list input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+#add-course-btn {
+  background-color: #0074e4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#add-course-btn:hover {
+  background-color: #0056a7;
+}
