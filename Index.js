@@ -182,6 +182,13 @@ function deleteStudent(studentId) {
     delete students[studentId];
     saveStudentData();
 }
+// Function to apply the filter and populate the student list
+function applyFilter() {
+  populateStudentList();
+}
+
+// Add an event listener to the "Apply Filter" button
+document.getElementById("apply-filter-btn").addEventListener("click", applyFilter);
 
 // Call the function to populate the student list
 populateStudentList();

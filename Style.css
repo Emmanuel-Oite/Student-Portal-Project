@@ -167,3 +167,31 @@ li button:hover {
 #edit-course-list input {
   margin-bottom: 10px;
 }
+#filter-options {
+  display: flex;
+  gap: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#apply-filter-btn {
+  background-color: #0074e4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#apply-filter-btn:hover {
+  background-color: #0056a7;
+}
