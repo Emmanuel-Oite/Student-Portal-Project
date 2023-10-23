@@ -126,7 +126,28 @@ function addStudent() {
         saveStudentData();
     }
 }
+// Function to open the modal for adding or editing a student
+function openStudentModal(studentId) {
+  const modal = document.getElementById("edit-student-modal");
+  modal.style.display = "block";
 
+  // ... Rest of the function for opening the modal ...
+
+  // Add New Course Button
+  const addCourseBtn = document.createElement("button");
+  addCourseBtn.textContent = "Add Course";
+  addCourseBtn.addEventListener("click", () => addNewCourse());
+  document.getElementById("edit-course-list").appendChild(addCourseBtn);
+}
+
+// Function to add a new course when editing or adding a student
+function addNewCourse() {
+  const courseList = document.getElementById("edit-course-list");
+  const newCourseInput = document.createElement("input");
+  newCourseInput.type = "text";
+  newCourseInput.placeholder = "Course Name";
+  courseList.appendChild(newCourseInput);
+}
 // Function to edit a student's information
 function editStudent(studentId) {
     const modal = document.getElementById('edit-student-modal');

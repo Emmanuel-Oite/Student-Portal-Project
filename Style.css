@@ -195,3 +195,17 @@ select {
 #apply-filter-btn:hover {
   background-color: #0056a7;
 }
+button#add-student-btn {
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px; 
+}
+
+button#add-student-btn:hover {
+  background-color: #45a049; 
+}
