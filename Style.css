@@ -1,4 +1,5 @@
-body, h1, h2, p, ul, li, button {
+/* Reset and normalize styles */
+body, h1, h2, p, ul, li, button, select {
   margin: 0;
   padding: 0;
 }
@@ -37,6 +38,22 @@ button {
 
 button:hover {
   background-color: #0056a7;
+}
+
+/* Filter options */
+#filter-options {
+  display: flex;
+  gap: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 #student-list {
