@@ -6,6 +6,9 @@ function populateStudentList() {
     const studentList = document.getElementById("student-list");
     studentList.innerHTML = ''; // Clear the existing list
 
+    const certificationFilter = document.getElementById("certification-filter").value;
+    const yearFilter = document.getElementById("year-filter").value;
+
     // Load the student data from the external JSON file
     fetch('students.json')
         .then(response => response.json())
@@ -13,26 +16,49 @@ function populateStudentList() {
             students = data;
             for (const studentId in students) {
                 const student = students[studentId];
-                const studentCard = document.createElement("div");
-                studentCard.classList.add("student");
-                studentCard.innerHTML = `
-                    <h2>Name: ${student.name}</h2>
-                    <p>Age: ${student.age}</p>
-                    <p>Major: ${student.major}</p>
-                    <h3>Courses:</h3>
-                    <ul>
-                        ${student.courses.map((course, courseIndex) => `
-                            <li>${course.courseName} (Grade: ${course.grade}) 
-                            <button onclick="updateGrade('${studentId}', ${courseIndex})">Update Grade</button>
-                            <button onclick="removeCourse('${studentId}', ${courseIndex})">Remove Course</button></li>`).join('')}
-                    </ul>
-                    <button onclick="editStudent('${studentId}')">Edit</button>
-                    <button onclick="deleteStudent('${studentId}')">Delete</button>
-                `;
-                studentList.appendChild(studentCard);
+
+                // Apply certification and year filters
+                if (
+                    (certificationFilter === '' || student.certification === certificationFilter) &&
+                    (yearFilter === '' || student.year === yearFilter)
+                ) {
+                    const studentCard = document.createElement("div");
+                    studentCard.classList.add("student");
+                    studentCard.innerHTML = `
+                        <h2>Name: ${student.name}</h2>
+                        <p>Age: ${student.age}</p>
+                        <p>Major: ${student.major}</p>
+                        <p>Certification: ${getCertificationName(student.certification)}</p>
+                        <p>Year: ${student.year}</p>
+                        <h3>Courses:</h3>
+                        <ul>
+                            ${student.courses.map((course, courseIndex) => `
+                                <li>${course.courseName} (Grade: ${course.grade}) 
+                                <button onclick="updateGrade('${studentId}', ${courseIndex})">Update Grade</button>
+                                <button onclick="removeCourse('${studentId}', ${courseIndex})">Remove Course</button></li>`).join('')}
+                        </ul>
+                        <button onclick="editStudent('${studentId}')">Edit</button>
+                        <button onclick="deleteStudent('${studentId}')">Delete</button>
+                    `;
+                    studentList.appendChild(studentCard);
+                }
             }
         })
         .catch(error => console.error('Error loading student data:', error));
+}
+
+// Function to convert certification codes to readable names
+function getCertificationName(certification) {
+    switch (certification) {
+        case "CLT":
+            return "Certificate in Leather Technology";
+        case "CFT":
+            return "Certificate in Footwear Design and Technology";
+        case "DLT":
+            return "Diploma in Leather Technology";
+        default:
+            return "Unknown";
+    }
 }
 
 // Function to update a student's grade
@@ -45,7 +71,6 @@ function updateGrade(studentId, courseIndex) {
         populateStudentList();
     }
 }
-
 // Function to add a new course to a student's course list
 function addCourse(studentId) {
     const newCourseName = document.getElementById("new-course-name").value;
