@@ -1,5 +1,5 @@
-[
-  {
+{
+  "john_doe": {
       "name": "John Doe",
       "age": 20,
       "major": "Leather Crafting",
@@ -14,7 +14,7 @@
           }
       ]
   },
-  {
+  "jane_smith": {
       "name": "Jane Smith",
       "age": 22,
       "major": "Leather Design",
@@ -29,7 +29,7 @@
           }
       ]
   },
-  {
+  "robert_johnson": {
       "name": "Robert Johnson",
       "age": 21,
       "major": "Leather Technology",
@@ -44,4 +44,6 @@
           }
       ]
   }
-]
+}
+
+

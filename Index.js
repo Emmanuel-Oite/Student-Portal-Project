@@ -1,5 +1,5 @@
 // Sample JSON data for students
-let students = [];
+let students = {};
 
 // Function to populate the student list with courses and grades
 function populateStudentList() {
@@ -11,7 +11,8 @@ function populateStudentList() {
         .then(response => response.json())
         .then(data => {
             students = data;
-            students.forEach((student, index) => {
+            for (const studentId in students) {
+                const student = students[studentId];
                 const studentCard = document.createElement("div");
                 studentCard.classList.add("student");
                 studentCard.innerHTML = `
@@ -22,100 +23,49 @@ function populateStudentList() {
                     <ul>
                         ${student.courses.map((course, courseIndex) => `
                             <li>${course.courseName} (Grade: ${course.grade}) 
-                            <button onclick="updateGrade(${index}, ${courseIndex})">Update Grade</button></li>`).join('')}
+                            <button onclick="updateGrade('${studentId}', ${courseIndex})">Update Grade</button>
+                            <button onclick="removeCourse('${studentId}', ${courseIndex})">Remove Course</button></li>`).join('')}
                     </ul>
-                    <button onclick="editStudent(${index})">Edit</button>
-                    <button onclick="deleteStudent(${index})">Delete</button>
+                    <button onclick="editStudent('${studentId}')">Edit</button>
+                    <button onclick="deleteStudent('${studentId}')">Delete</button>
                 `;
                 studentList.appendChild(studentCard);
-            });
+            }
         })
         .catch(error => console.error('Error loading student data:', error));
 }
-// Function to add a new course to a student's course list
-function addCourse(studentIndex) {
-  const newCourseName = document.getElementById("new-course-name").value;
 
-  if (newCourseName) {
-      students[studentIndex].courses.push({
-          courseName: newCourseName,
-          grade: "N/A" // Initialize with "N/A" grade
-      });
-      saveStudentData();
-      populateStudentList();
-      document.getElementById("new-course-name").value = ''; // Clear the input field
-  }
-}
-
-// Function to remove a course from a student's course list
-function removeCourse(studentIndex, courseIndex) {
-  students[studentIndex].courses.splice(courseIndex, 1);
-  saveStudentData();
-  populateStudentList();
-}
 // Function to update a student's grade
-function updateGrade(studentIndex, courseIndex) {
+function updateGrade(studentId, courseIndex) {
     const newGrade = prompt("Enter the new grade:");
 
     if (newGrade) {
-        students[studentIndex].courses[courseIndex].grade = newGrade;
+        students[studentId].courses[courseIndex].grade = newGrade;
         saveStudentData();
+        populateStudentList();
     }
 }
 
-// Function to add a new student
-function addStudent() {
-    const newName = prompt("Enter the name of the new student:");
-    const newAge = prompt("Enter the age of the new student:");
-    const newMajor = prompt("Enter the major of the new student:");
+// Function to add a new course to a student's course list
+function addCourse(studentId) {
+    const newCourseName = document.getElementById("new-course-name").value;
 
-    if (newName && newAge && newMajor) {
-        students.push({
-            name: newName,
-            age: newAge,
-            major: newMajor,
-            courses: []  // Initialize with an empty course array
+    if (newCourseName) {
+        students[studentId].courses.push({
+            courseName: newCourseName,
+            grade: "N/A"
         });
         saveStudentData();
+        populateStudentList();
+        document.getElementById("new-course-name").value = ''; // Clear the input field
     }
 }
 
-// Function to edit a student's information
-function editStudent(index) {
-    const modal = document.getElementById('edit-student-modal');
-    modal.style.display = 'block';
-
-    // Fill the edit form with the current student data
-    const nameInput = document.getElementById('edit-student-name');
-    nameInput.value = students[index].name;
-
-    const ageInput = document.getElementById('edit-student-age');
-    ageInput.value = students[index].age;
-
-    const majorInput = document.getElementById('edit-student-major');
-    majorInput.value = students[index].major;
-
-    // Save the edited data on "Save" button click
-    const saveButton = document.getElementById('save-edit-btn');
-    saveButton.onclick = () => {
-        students[index].name = nameInput.value;
-        students[index].age = ageInput.value;
-        students[index].major = majorInput.value;
-        saveStudentData();
-        modal.style.display = 'none';
-    };
-
-    // Close the modal on "x" click
-    const closeButton = document.getElementsByClassName('close')[0];
-    closeButton.onclick = () => {
-        modal.style.display = 'none';
-    };
-}
-
-// Function to delete a student from the database
-function deleteStudent(index) {
-    students.splice(index, 1);
+// Function to remove a course from a student's course list
+function removeCourse(studentId, courseIndex) {
+    students[studentId].courses.splice(courseIndex, 1);
     saveStudentData();
+    populateStudentList();
 }
 
 // Function to save student data back to the JSON file
@@ -132,6 +82,80 @@ function saveStudentData() {
         populateStudentList(); // Refresh the student list with updated data
     })
     .catch(error => console.error('Error saving student data:', error));
+}
+
+// Function to add a new student
+function addStudent() {
+    const newName = prompt("Enter the name of the new student:");
+    const newAge = prompt("Enter the age of the new student:");
+    const newMajor = prompt("Enter the major of the new student:");
+
+    if (newName && newAge && newMajor) {
+        const uniqueId = `student_${Date.now()}`;
+        students[uniqueId] = {
+            name: newName,
+            age: newAge,
+            major: newMajor,
+            courses: []
+        };
+        saveStudentData();
+    }
+}
+
+// Function to edit a student's information
+function editStudent(studentId) {
+    const modal = document.getElementById('edit-student-modal');
+    modal.style.display = 'block';
+
+    // Fill the edit form with the current student data
+    const nameInput = document.getElementById('edit-student-name');
+    nameInput.value = students[studentId].name;
+
+    const ageInput = document.getElementById('edit-student-age');
+    ageInput.value = students[studentId].age;
+
+    const majorInput = document.getElementById('edit-student-major');
+    majorInput.value = students[studentId].major;
+
+    // Clear and populate the course list
+    const courseList = document.getElementById('edit-course-list');
+    courseList.innerHTML = '';
+    students[studentId].courses.forEach((course, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <input type="text" id="course-name-${index}" value="${course.courseName}">
+            <button onclick="updateCourseName('${studentId}', ${index})">Update Name</button>`;
+        courseList.appendChild(listItem);
+    });
+
+    // Save the edited data on "Save" button click
+    const saveButton = document.getElementById('save-edit-btn');
+    saveButton.onclick = () => {
+        students[studentId].name = nameInput.value;
+        students[studentId].age = ageInput.value;
+        students[studentId].major = majorInput.value;
+        saveStudentData();
+        modal.style.display = 'none';
+    };
+
+    // Close the modal on "x" click
+    const closeButton = document.getElementsByClassName('close')[0];
+    closeButton.onclick = () => {
+        modal.style.display = 'none';
+    };
+}
+
+// Function to update a course name
+function updateCourseName(studentId, courseIndex) {
+    const newName = document.getElementById(`course-name-${courseIndex}`).value;
+    students[studentId].courses[courseIndex].courseName = newName;
+    saveStudentData();
+}
+
+// Function to delete a student from the database
+function deleteStudent(studentId) {
+    delete students[studentId];
+    saveStudentData();
 }
 
 // Call the function to populate the student list
