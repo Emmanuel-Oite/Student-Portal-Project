@@ -1,27 +1,32 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f0f0f0;
+body, h1, h2, p, ul, li, button {
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  gap: 20px;
 }
 
 header {
   background-color: #0074e4;
   color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
 }
 
 h1 {
-  font-size: 1.5rem;
-  margin: 0;
+  font-size: 24px;
 }
 
-#add-student-btn {
-  background-color: #0056a7;
+button {
+  background-color: #0074e4;
   color: white;
   border: none;
   border-radius: 5px;
@@ -30,87 +35,47 @@ h1 {
   transition: background-color 0.3s;
 }
 
-#add-student-btn:hover {
-  background-color: #003e77;
+button:hover {
+  background-color: #0056a7;
 }
 
 #student-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  background-color: white;
   padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .student {
-  background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
-  margin: 10px;
-  text-align: left;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  min-width: 250px;
+  margin-bottom: 10px;
 }
 
-.student h2 {
-  font-size: 1.25rem;
-  margin: 0;
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.student p {
-  font-size: 1rem;
-  margin: 0;
+h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  width: 60%;
-  max-width: 400px;
-  position: relative;
-  text-align: center;
-  border-radius: 5px;
-}
-
-.close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  cursor: pointer;
-}
-#edit-course-list {
-  padding: 0;
-  margin: 0;
-}
-
-#edit-course-list li {
+ul {
   list-style-type: none;
+}
+
+li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 0;
 }
 
-#edit-course-list input {
-  flex-grow: 1;
-  margin-right: 10px;
-}
-
-#add-course-btn {
+li button {
   background-color: #0074e4;
   color: white;
   border: none;
@@ -120,6 +85,68 @@ h1 {
   transition: background-color 0.3s;
 }
 
-#add-course-btn:hover {
+li button:hover {
   background-color: #0056a7;
+}
+
+/* Edit student modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 5px;
+  width: 70%;
+  max-width: 500px;
+  margin: 10% auto;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.modal-content label {
+  font-weight: bold;
+}
+
+.modal-content button {
+  background-color: #0074e4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #0056a7;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#edit-course-list input {
+  margin-bottom: 10px;
 }
