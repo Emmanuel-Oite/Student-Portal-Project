@@ -3,6 +3,8 @@
       "name": "John Doe",
       "age": 20,
       "major": "Leather Crafting",
+      "certification": "CLT",
+      "year": "08",
       "courses": [
           {
               "courseName": "Leatherwork 101",
@@ -18,6 +20,8 @@
       "name": "Jane Smith",
       "age": 22,
       "major": "Leather Design",
+      "certification": "CFT",
+      "year": "08",
       "courses": [
           {
               "courseName": "Introduction to Leather Design",
@@ -33,6 +37,8 @@
       "name": "Robert Johnson",
       "age": 21,
       "major": "Leather Technology",
+      "certification": "DLT",
+      "year": "08",
       "courses": [
           {
               "courseName": "Leather Technology Fundamentals",
@@ -43,7 +49,39 @@
               "grade": "B-"
           }
       ]
+  },
+  "susan_williams": {
+      "name": "Susan Williams",
+      "age": 23,
+      "major": "Leather Design",
+      "certification": "CLT",
+      "year": "09",
+      "courses": [
+          {
+              "courseName": "Leatherwork Fundamentals",
+              "grade": "A"
+          },
+          {
+              "courseName": "Advanced Leather Crafting",
+              "grade": "B+"
+          }
+      ]
+  },
+  "michael_smith": {
+      "name": "Michael Smith",
+      "age": 24,
+      "major": "Leather Technology",
+      "certification": "DLT",
+      "year": "09",
+      "courses": [
+          {
+              "courseName": "Leather Technology Basics",
+              "grade": "A-"
+          },
+          {
+              "courseName": "Advanced Leather Engineering",
+              "grade": "B"
+          }
+      ]
   }
 }
-
-
