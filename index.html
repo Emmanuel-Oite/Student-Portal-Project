@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/Style.css">
     <title>Student Directory</title>
 </head>
 <body>
-    <h1>Student Directory</h1>
+    <header>
+        <h1>Student Directory</h1>
+        <button id="add-student-btn">Add Student</button>
+    </header>
     <div id="student-list"></div>
-    <button id="add-student-btn">Add Student</button>
+    
+    <div id="edit-student-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Student</h2>
+            <label for="edit-student-name">Name:</label>
+            <input type="text" id="edit-student-name">
+            <label for="edit-student-age">Age:</label>
+            <input type="number" id="edit-student-age">
+            <label for="edit-student-major">Major:</label>
+            <input type="text" id="edit-student-major">
+            <button id="save-edit-btn">Save</button>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script src="/Index.js"></script>
 </body>
 </html>
+
