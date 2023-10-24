@@ -1,4 +1,4 @@
-
+/* Reset and normalize styles */
 body, h1, h2, p, ul, li, button, select {
   margin: 0;
   padding: 0;
@@ -41,18 +41,18 @@ button:hover {
 }
 
 button#add-student-btn {
-  background-color: #4CAF50; 
+  background-color: #4CAF50; /* Green color for the "Add Student" button */
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-bottom: 20px; 
+  margin-bottom: 20px; /* Add some spacing after the button */
 }
 
 button#add-student-btn:hover {
-  background-color: #45a049; 
+  background-color: #45a049; /* Slight color change on hover */
 }
 
 /* Filter options */
@@ -196,5 +196,4 @@ li button:hover {
 #edit-course-list input {
   margin-bottom: 10px;
 }
-
 
