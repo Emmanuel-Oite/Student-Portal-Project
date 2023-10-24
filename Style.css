@@ -1,4 +1,4 @@
-/* Reset and normalize styles */
+
 body, h1, h2, p, ul, li, button, select {
   margin: 0;
   padding: 0;
@@ -40,6 +40,21 @@ button:hover {
   background-color: #0056a7;
 }
 
+button#add-student-btn {
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px; 
+}
+
+button#add-student-btn:hover {
+  background-color: #45a049; 
+}
+
 /* Filter options */
 #filter-options {
   display: flex;
@@ -54,6 +69,20 @@ select {
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+
+button#apply-filter-btn {
+  background-color: #0074e4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#apply-filter-btn:hover {
+  background-color: #0056a7;
 }
 
 #student-list {
@@ -167,45 +196,5 @@ li button:hover {
 #edit-course-list input {
   margin-bottom: 10px;
 }
-#filter-options {
-  display: flex;
-  gap: 20px;
-}
 
-label {
-  font-weight: bold;
-}
 
-select {
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-#apply-filter-btn {
-  background-color: #0074e4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#apply-filter-btn:hover {
-  background-color: #0056a7;
-}
-button#add-student-btn {
-  background-color: #4CAF50; 
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 20px; 
-}
-
-button#add-student-btn:hover {
-  background-color: #45a049; 
-}
